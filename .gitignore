@@ -1,0 +1,38 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Environments & Dependencies
+.venv/
+venv/
+ENV/
+env/
+node_modules/
+
+# Secrets & Local Configurations (STRICT ZERO-LEAK)
+config.json
+.env
+*.pem
+*.key
+*.pfx
+*.cert
+*.token_cache.bin
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+logs/
+
+# Coverage & test caches
+.pytest_cache/
+.coverage
+htmlcov/

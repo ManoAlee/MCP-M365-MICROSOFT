@@ -1,0 +1,15 @@
+{
+  "TenantId": "your-tenant-id-here-0000-000000000000",
+  "TenantDomain": "yourorganization.onmicrosoft.com",
+  "AppName": "M365-Governance-MCP-Server",
+  "ClientId": "your-azure-app-client-id-here",
+  "ClientSecret": "your-azure-app-client-secret-here",
+  "PrimaryAdmin": "admin@yourdomain.com",
+  "Permissions": [
+    "Directory.Read.All",
+    "Mail.ReadWrite",
+    "Mail.Send",
+    "MailboxSettings.ReadWrite",
+    "User.Read.All"
+  ]
+}

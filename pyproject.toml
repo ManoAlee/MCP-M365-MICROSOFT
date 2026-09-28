@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-m365-governance"
+version = "1.0.0"
+description = "Enterprise Model Context Protocol (MCP) Server for Microsoft 365, Exchange Online, Entra ID and Graph API."
+readme = "README.md"
+authors = [
+    { name = "ManoAlee", email = "153291497+ManoAlee@users.noreply.github.com" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = ["mcp", "model-context-protocol", "microsoft-365", "exchange-online", "graph-api", "entra-id", "devops", "sysadmin"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Communications :: Email",
+    "Topic :: System :: Systems Administration"
+]
+dependencies = [
+    "mcp>=2.0.0",
+    "pydantic>=2.0.0",
+    "requests>=2.31.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0"
+]
+
+[project.scripts]
+mcp-m365 = "mcp_m365.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
