@@ -1,0 +1,50 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "mcp-m365-microsoft",
+  "description": "Enterprise Model Context Protocol (MCP) server for Microsoft 365, Exchange Online, Entra ID, and Microsoft Graph administration.",
+  "version": "1.0.0",
+  "title": "Enterprise Microsoft 365 MCP Server",
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-m365-microsoft",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "packageArguments": [
+        {
+          "type": "positional",
+          "value": "-m"
+        },
+        {
+          "type": "positional",
+          "value": "mcp_m365"
+        }
+      ],
+      "environmentVariables": [
+        {
+          "name": "M365_TENANT_ID",
+          "description": "Microsoft Entra ID Tenant ID GUID",
+          "isRequired": true
+        },
+        {
+          "name": "M365_CLIENT_ID",
+          "description": "Application (Client) ID for Microsoft Graph App Registration",
+          "isRequired": true
+        },
+        {
+          "name": "M365_CLIENT_SECRET",
+          "description": "Client Secret for App-Only Authentication",
+          "isRequired": true,
+          "isSecret": true
+        },
+        {
+          "name": "M365_PRIMARY_ADMIN",
+          "description": "Primary Administrator UPN for Exchange Online Management",
+          "isRequired": false
+        }
+      ]
+    }
+  ]
+}

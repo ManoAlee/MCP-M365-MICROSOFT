@@ -20,11 +20,26 @@ class TestM365Server(unittest.TestCase):
         """Validates that MCP server initialized with expected properties and tools."""
         self.assertEqual(server.name, "mcp-m365-microsoft")
         tool_list = server._tool_manager.list_tools()
-        self.assertEqual(len(tool_list), 34, f"Expected exactly 34 tools, got {len(tool_list)}")
+        self.assertEqual(len(tool_list), 44, f"Expected exactly 44 tools, got {len(tool_list)}")
 
     def test_tools_export_count(self):
         """Validates that all expected tools are exported in __all__."""
-        self.assertGreaterEqual(len(tools.__all__), 25)
+        self.assertGreaterEqual(len(tools.__all__), 35)
+        expected_new_tools = [
+            "inspect_mailbox_folders",
+            "diagnose_mailbox_health",
+            "search_mailbox_messages",
+            "list_calendar_events",
+            "create_calendar_event",
+            "list_onedrive_files",
+            "search_onedrive_files",
+            "get_user_manager",
+            "get_user_direct_reports",
+            "get_department_members"
+        ]
+        for t in expected_new_tools:
+            self.assertIn(t, tools.__all__, f"Missing {t} in tools.__all__")
+            self.assertTrue(hasattr(tools, t), f"Tool {t} not found in tools module")
         for tool_name in tools.__all__:
             self.assertTrue(hasattr(tools, tool_name), f"Tool {tool_name} not found in tools module")
 

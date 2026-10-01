@@ -37,9 +37,15 @@ def message_trace(
     ps_cmd = f"""
 $startDate = (Get-Date).AddHours(-{hours_back})
 $endDate   = Get-Date
-Get-MessageTrace -StartDate $startDate -EndDate $endDate {filter_str} -PageSize {result_size} | `
-    Select-Object Received, SenderAddress, RecipientAddress, Subject, Status, FromIP, Size | `
-    ConvertTo-Json -Depth 3
+try {{
+    Get-MessageTraceV2 -StartDate $startDate -EndDate $endDate {filter_str} -PageSize {result_size} -ErrorAction Stop | `
+        Select-Object Received, SenderAddress, RecipientAddress, Subject, Status, FromIP, Size | `
+        ConvertTo-Json -Depth 3
+}} catch {{
+    Get-MessageTrace -StartDate $startDate -EndDate $endDate {filter_str} -PageSize {result_size} -ErrorAction SilentlyContinue | `
+        Select-Object Received, SenderAddress, RecipientAddress, Subject, Status, FromIP, Size | `
+        ConvertTo-Json -Depth 3
+}}
 """
     result = ps_bridge.run_exchange_command(ps_cmd)
     return {

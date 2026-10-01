@@ -15,6 +15,10 @@ from .groups_tool import list_distribution_groups, get_group_members, manage_gro
 from .licenses_tool import list_license_skus
 from .profile_sync_tool import get_user_profile, update_user_profile
 from .daily_bot_tool import generate_daily_activity_summary
+from .diagnostics_tool import inspect_mailbox_folders, diagnose_mailbox_health, search_mailbox_messages
+from .calendar_tool import list_calendar_events, create_calendar_event
+from .odsp_storage_tool import list_onedrive_files, search_onedrive_files
+from .org_hierarchy_tool import get_user_manager, get_user_direct_reports, get_department_members
 
 __all__ = [
     # 1. Out of Office / Vacation
@@ -63,5 +67,19 @@ __all__ = [
     "get_user_profile",
     "update_user_profile",
     # 13. Operational Intelligence & Bot
-    "generate_daily_activity_summary"
+    "generate_daily_activity_summary",
+    # 14. Advanced Mailbox Diagnostics & Routing Forensics
+    "inspect_mailbox_folders",
+    "diagnose_mailbox_health",
+    "search_mailbox_messages",
+    # 15. Calendar & Meetings (Microsoft 365 Calendar)
+    "list_calendar_events",
+    "create_calendar_event",
+    # 16. OneDrive & SharePoint Files (ODSP)
+    "list_onedrive_files",
+    "search_onedrive_files",
+    # 17. User & Organizational Hierarchy Awareness
+    "get_user_manager",
+    "get_user_direct_reports",
+    "get_department_members"
 ]

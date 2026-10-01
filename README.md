@@ -29,7 +29,7 @@
 
 The **Enterprise Microsoft 365 MCP Server** connects Large Language Models (LLMs) and AI agents (such as **Claude Desktop**, **Cursor**, **Antigravity IDE**, **Cline**, and **GitHub Copilot**) directly to enterprise Microsoft 365 environments.
 
-Equipped with **34 enterprise-grade tools**, it bridges **Microsoft Graph REST API** (for lightning-fast directory and messaging operations) with **Exchange Online Management v3** (for deep administrative transport rules, litigation holds, quarantine management, and mail flow forensics).
+Equipped with **44 enterprise-grade tools**, it bridges **Microsoft Graph REST API** (for lightning-fast directory, messaging, calendar, files, and org awareness) with **Exchange Online Management v3** (for deep administrative transport rules, litigation holds, quarantine management, and mail flow forensics).
 
 ---
 
@@ -141,6 +141,16 @@ For complete details on thread safety, token lifecycle, and error budgets, see t
 | **Profile Sync** | `m365_get_user_profile` | Graph API | Fetch department, title, phone, manager, and office |
 | | `m365_update_user_profile` | Graph API | Update organizational attributes in Entra ID |
 | **Intelligence** | `graph_generate_daily_activity_summary`| Graph API | Categorize recent messages into Urgent, Support, Financial |
+| **Forensics & Diagnostics** | `graph_inspect_mailbox_folders` | Graph API | Recursively inspect all mail folders, subfolder nesting, and unread counts |
+| | `graph_diagnose_mailbox_health` | Graph API | End-to-end diagnostic of mail arrival, diverted folders, and routing rules |
+| | `graph_search_mailbox_messages` | Graph API | Advanced message search with free-text, OData filters, and folder scope |
+| **Calendar & Scheduling** | `graph_list_calendar_events` | Graph API | Query scheduled events and meetings with datetime range filtering |
+| | `graph_create_calendar_event` | Graph API | Schedule calendar events and generate Teams meeting links |
+| **OneDrive & Files (ODSP)** | `graph_list_onedrive_files` | Graph API | Browse files and directories in user OneDrive personal storage |
+| | `graph_search_onedrive_files` | Graph API | Search corporate documents and files across OneDrive by keyword |
+| **Org & Team Awareness** | `graph_get_user_manager` | Graph API | Retrieve reporting manager from Entra ID corporate directory |
+| | `graph_get_user_direct_reports` | Graph API | List direct subordinates and reporting hierarchy for a leader |
+| | `graph_get_department_members` | Graph API | Discover collaborators and active team members in a department |
 
 Detailed parameter schemas and return types are documented in the [Tools Reference Manual](docs/TOOLS_REFERENCE.md).
 

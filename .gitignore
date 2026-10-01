@@ -23,6 +23,8 @@ config.json
 *.pfx
 *.cert
 *.token_cache.bin
+scratch_*
+*.tmp
 
 # IDE & OS files
 .vscode/

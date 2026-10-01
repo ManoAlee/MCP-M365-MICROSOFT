@@ -399,6 +399,132 @@ def tool_update_user_profile(
 def tool_generate_daily_activity_summary(user_upn: str, top_messages: int = 25) -> Dict[str, Any]:
     return tools.generate_daily_activity_summary(user_upn=user_upn, top_messages=top_messages)
 
+# ------------------------------------------------------------------------------
+# 14. Advanced Mailbox Diagnostics & Routing Forensics
+# ------------------------------------------------------------------------------
+
+@server.tool(
+    name="graph_inspect_mailbox_folders",
+    description="Recursively inspects a mailbox folder tree with item counts and unread metrics to detect deep subfolder routing."
+)
+def tool_inspect_mailbox_folders(user_upn: str, include_child_folders: bool = True) -> Dict[str, Any]:
+    return tools.inspect_mailbox_folders(user_upn=user_upn, include_child_folders=include_child_folders)
+
+@server.tool(
+    name="graph_diagnose_mailbox_health",
+    description="Runs automated diagnostic on a mailbox to identify missing emails, incoming message distribution across subfolders, and diverted rules."
+)
+def tool_diagnose_mailbox_health(user_upn: str, hours_back: int = 24) -> Dict[str, Any]:
+    return tools.diagnose_mailbox_health(user_upn=user_upn, hours_back=hours_back)
+
+@server.tool(
+    name="graph_search_mailbox_messages",
+    description="Searches mailbox messages using free-text queries, OData filters, or folder scope via Microsoft Graph."
+)
+def tool_search_mailbox_messages(
+    user_upn: str,
+    search_query: Optional[str] = None,
+    filter_query: Optional[str] = None,
+    folder_id: Optional[str] = None,
+    top: int = 25
+) -> Dict[str, Any]:
+    return tools.search_mailbox_messages(
+        user_upn=user_upn,
+        search_query=search_query,
+        filter_query=filter_query,
+        folder_id=folder_id,
+        top=top
+    )
+
+# ------------------------------------------------------------------------------
+# 15. Calendar & Meetings (Microsoft 365 Calendar)
+# ------------------------------------------------------------------------------
+
+@server.tool(
+    name="graph_list_calendar_events",
+    description="Retrieves scheduled events and meetings from a user's calendar with optional date range."
+)
+def tool_list_calendar_events(
+    user_upn: str,
+    start_datetime: Optional[str] = None,
+    end_datetime: Optional[str] = None,
+    top: int = 20
+) -> Dict[str, Any]:
+    return tools.list_calendar_events(
+        user_upn=user_upn,
+        start_datetime=start_datetime,
+        end_datetime=end_datetime,
+        top=top
+    )
+
+@server.tool(
+    name="graph_create_calendar_event",
+    description="Creates a new calendar event or Microsoft Teams meeting on behalf of the user."
+)
+def tool_create_calendar_event(
+    user_upn: str,
+    subject: str,
+    start_iso: str,
+    end_iso: str,
+    attendees: Optional[List[str]] = None,
+    body_content: str = "",
+    location_name: str = "",
+    is_online_meeting: bool = True
+) -> Dict[str, Any]:
+    return tools.create_calendar_event(
+        user_upn=user_upn,
+        subject=subject,
+        start_iso=start_iso,
+        end_iso=end_iso,
+        attendees=attendees,
+        body_content=body_content,
+        location_name=location_name,
+        is_online_meeting=is_online_meeting
+    )
+
+# ------------------------------------------------------------------------------
+# 16. OneDrive & SharePoint Storage (ODSP)
+# ------------------------------------------------------------------------------
+
+@server.tool(
+    name="graph_list_onedrive_files",
+    description="Lists files and subdirectories located in a user's OneDrive drive."
+)
+def tool_list_onedrive_files(user_upn: str, folder_id: Optional[str] = None) -> Dict[str, Any]:
+    return tools.list_onedrive_files(user_upn=user_upn, folder_id=folder_id)
+
+@server.tool(
+    name="graph_search_onedrive_files",
+    description="Searches for documents and files across the user's OneDrive drive by keyword or filename."
+)
+def tool_search_onedrive_files(user_upn: str, query: str, top: int = 25) -> Dict[str, Any]:
+    return tools.search_onedrive_files(user_upn=user_upn, query=query, top=top)
+
+# ------------------------------------------------------------------------------
+# 17. User & Organizational Hierarchy Awareness
+# ------------------------------------------------------------------------------
+
+@server.tool(
+    name="graph_get_user_manager",
+    description="Retrieves the direct reporting manager of a user in Microsoft Entra ID."
+)
+def tool_get_user_manager(user_upn: str) -> Dict[str, Any]:
+    return tools.get_user_manager(user_upn=user_upn)
+
+@server.tool(
+    name="graph_get_user_direct_reports",
+    description="Retrieves all direct reports (subordinates) for a manager."
+)
+def tool_get_user_direct_reports(user_upn: str) -> Dict[str, Any]:
+    return tools.get_user_direct_reports(user_upn=user_upn)
+
+@server.tool(
+    name="graph_get_department_members",
+    description="Queries active members of a specified corporate department."
+)
+def tool_get_department_members(department: str, top: int = 50) -> Dict[str, Any]:
+    return tools.get_department_members(department=department, top=top)
+
 
 def run_stdio():
     """Starts the MCP server using standard I/O (stdio) transport."""

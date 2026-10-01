@@ -22,10 +22,11 @@ class PowerShellBridge:
         Executes an Exchange Online command block via Connect-ExchangeOnline.
         Connects using -DisableWAM in non-interactive sessions.
         """
-        auth_line = f"Connect-ExchangeOnline -UserPrincipalName '{self.admin_upn}' -DisableWAM -ErrorAction Stop | Out-Null" if self.admin_upn else "Connect-ExchangeOnline -DisableWAM -ErrorAction Stop | Out-Null"
+        auth_line = f"Connect-ExchangeOnline -UserPrincipalName '{self.admin_upn}' -DisableWAM -ShowBanner:$false -ShowProgress:$false -ErrorAction Stop | Out-Null" if self.admin_upn else "Connect-ExchangeOnline -DisableWAM -ShowBanner:$false -ShowProgress:$false -ErrorAction Stop | Out-Null"
 
         wrapped_command = f"""
 $ErrorActionPreference = 'Stop'
+$ProgressPreference = 'SilentlyContinue'
 Import-Module ExchangeOnlineManagement -ErrorAction Stop
 {auth_line}
 try {{
@@ -54,25 +55,19 @@ try {{
 
         parsed_json: Optional[Any] = None
         if success and proc.stdout:
+            raw_out = proc.stdout.strip()
+            # 1. Direct JSON parse
             try:
-                stdout_lines = proc.stdout.strip().splitlines()
-                clean_lines = [
-                    l for l in stdout_lines 
-                    if not l.startswith("This V3 EXO") 
-                    and not l.startswith("Unlike") 
-                    and not l.startswith("V3") 
-                    and not l.startswith("REST") 
-                    and not l.startswith("For more") 
-                    and not l.startswith("Starting with") 
-                    and not l.startswith("----")
-                ]
-                clean_stdout = "\n".join(clean_lines).strip()
-                parsed_json = json.loads(clean_stdout)
+                parsed_json = json.loads(raw_out)
             except Exception:
-                try:
-                    parsed_json = json.loads(proc.stdout.strip())
-                except Exception:
-                    pass
+                # 2. Extract JSON array or object substring
+                import re
+                match = re.search(r'(\[.*\]|\{.*\})', raw_out, re.DOTALL)
+                if match:
+                    try:
+                        parsed_json = json.loads(match.group(1))
+                    except Exception:
+                        pass
 
         return {
             "success": success,

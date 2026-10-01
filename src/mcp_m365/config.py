@@ -12,12 +12,21 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 CONFIG_JSON_PATH = PROJECT_ROOT / "config.json"
 
 _config_data: Dict[str, Any] = {}
-if CONFIG_JSON_PATH.exists():
-    try:
-        with open(CONFIG_JSON_PATH, "r", encoding="utf-8") as f:
-            _config_data = json.load(f)
-    except Exception:
-        pass
+potential_config_paths = [
+    CONFIG_JSON_PATH,
+    PROJECT_ROOT.parent / "mcp_m365_governance" / "config.json",
+    PROJECT_ROOT.parent / "config.json"
+]
+
+for cfg_path in potential_config_paths:
+    if cfg_path.exists():
+        try:
+            with open(cfg_path, "r", encoding="utf-8-sig") as f:
+                _config_data = json.load(f)
+                if _config_data.get("TenantId") or _config_data.get("ClientId"):
+                    break
+        except Exception:
+            continue
 
 TENANT_ID: str = os.environ.get("M365_TENANT_ID", _config_data.get("TenantId", ""))
 CLIENT_ID: str = os.environ.get("M365_CLIENT_ID", _config_data.get("ClientId", ""))
