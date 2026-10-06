@@ -2,23 +2,24 @@
 
 # ⚡ Enterprise Microsoft 365 MCP Server
 
-**The definitive Model Context Protocol (MCP) server for enterprise Microsoft 365, Exchange Online, Entra ID, and Microsoft Graph administration.**
+**The definitive, production-grade Model Context Protocol (MCP) server for enterprise Microsoft 365, Exchange Online, Microsoft Entra ID, and Microsoft Graph administration.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastMCP](https://img.shields.io/badge/Protocol-Model%20Context%20Protocol%20(FastMCP)-blueviolet.svg?style=for-the-badge)](https://modelcontextprotocol.io)
-[![Microsoft Graph API](https://img.shields.io/badge/Microsoft%20Graph-v1.0-0078D4.svg?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/graph/)
+[![Tools: 51 Enterprise](https://img.shields.io/badge/Tools-51%20Enterprise%20Tools-success.svg?style=for-the-badge&logo=wakatime&logoColor=white)](#-tool-catalog-51-tools)
+[![Microsoft Graph API](https://img.shields.io/badge/Microsoft%20Graph-v1.0%20%2F%20Beta-0078D4.svg?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/graph/)
 [![Exchange Online](https://img.shields.io/badge/Exchange%20Online-v3%20REST-0078D4.svg?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](https://learn.microsoft.com/en-us/powershell/exchange/)
-[![Security: Hardened](https://img.shields.io/badge/Security-RBAC%20%26%20Zero%20Hardcoding-success.svg?style=for-the-badge)](docs/ARCHITECTURE.md)
+[![Security: Zero Leak](https://img.shields.io/badge/Security-Zero%20Hardcoding%20%7C%20RBAC-green.svg?style=for-the-badge)](#-security--enterprise-governance)
 
 <p align="center">
   <a href="#-key-capabilities">Key Capabilities</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-quickstart">Quickstart</a> •
-  <a href="#-tool-catalog-33-tools">Tool Catalog</a> •
+  <a href="#-tool-catalog-51-tools">Tool Catalog (51 Tools)</a> •
   <a href="#-client-configuration">Client Setup</a> •
-  <a href="#-security--compliance">Security</a> •
-  <a href="#-license">License</a>
+  <a href="#-security--enterprise-governance">Security</a> •
+  <a href="#-contributing">Contributing</a>
 </p>
 
 </div>
@@ -27,197 +28,237 @@
 
 ## 🌟 Overview
 
-The **Enterprise Microsoft 365 MCP Server** connects Large Language Models (LLMs) and AI agents (such as **Claude Desktop**, **Cursor**, **Antigravity IDE**, **Cline**, and **GitHub Copilot**) directly to enterprise Microsoft 365 environments.
+The **Enterprise Microsoft 365 MCP Server** connects Large Language Models (LLMs) and autonomous AI coding agents (such as **Claude Desktop**, **Cursor**, **Antigravity IDE**, **Cline**, and **GitHub Copilot**) directly to enterprise Microsoft 365 tenants with institutional-grade security.
 
-Equipped with **44 enterprise-grade tools**, it bridges **Microsoft Graph REST API** (for lightning-fast directory, messaging, calendar, files, and org awareness) with **Exchange Online Management v3** (for deep administrative transport rules, litigation holds, quarantine management, and mail flow forensics).
+Equipped with **51 specialized tools across 18 operational pillars**, it fuses:
+1. **Microsoft Graph REST API** (v1.0 & Beta) for ultra-fast, modern directory, messaging, calendar, files, and org awareness.
+2. **Exchange Online Management v3 REST Engine** for deep administrative operations, transport rules, litigation holds, quarantine management, and mail flow forensics.
+3. **SMTP & Messaging Infrastructure Engine** for low-level socket diagnostics, real-time SMTP AUTH credential validation, Direct Send testing, and DNS security posture auditing (MX, SPF, DMARC, anti-spoofing).
 
 ---
 
 ## 🚀 Key Capabilities
 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                            ENTERPRISE CAPABILITIES                         │
-├──────────────────────────────┬──────────────────────────────┬───────────────┤
-│ 📅 Vacation & OOF Automation │ 🛡️ EOP Quarantine & Defender │ 👥 Entra ID   │
-│ • Scheduled HTML auto-replies│ • Query quarantined emails   │ • GAL Search  │
-│ • Temporal redirect rules    │ • Tenant Allow/Block Lists   │ • Org Sync    │
-├──────────────────────────────┼──────────────────────────────┼───────────────┤
-│ 📬 Mailbox & Delegation Ops  │ ⚖️ Compliance & Governance   │ 📊 Analytics  │
-│ • SharedMailbox conversion   │ • Legal & Litigation Holds   │ • License SKUs│
-│ • FullAccess & SendAs rights │ • Retention policies & tags  │ • Daily Digest│
-├──────────────────────────────┼──────────────────────────────┼───────────────┤
-│ ⚡ Microsoft Graph Engine    │ 🔍 Forensics & Mail Flow     │ 🔀 Transport  │
-│ • High-speed HTML email send │ • Message delivery traces    │ • Tenant rules│
-│ • Teams Adaptive Cards       │ • DKIM status & connectors   │ • Inbox rules │
-└──────────────────────────────┴──────────────────────────────┴───────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   ENTERPRISE M365 CAPABILITIES                                  │
+├──────────────────────────────┬──────────────────────────────┬───────────────────────────────────┤
+│ 📅 Vacation & OOF Automation │ 🛡️ EOP Quarantine & Security │ 👥 Entra ID & User Lifecycle      │
+│ • Scheduled HTML auto-replies│ • Threat message release     │ • Ex-employee shared conversion   │
+│ • Date-bounded forward rules │ • Tenant Allow/Block Lists   │ • Org hierarchy & reporting lines │
+│ • Multi-language signatures  │ • Phish/Spam remediation     │ • Never-expiring service creds    │
+├──────────────────────────────┼──────────────────────────────┼───────────────────────────────────┤
+│ ⚡ SMTP & Relay Engineering  │ ⚖️ Compliance & Forensics    │ 📁 OneDrive & SharePoint (ODSP)   │
+│ • Real-time SMTP AUTH test   │ • Litigation hold audits     │ • File inventory & search         │
+│ • Direct Send MX verification│ • Recoverable items purge    │ • Drive item metadata extraction  │
+│ • SPF, MX & DMARC DNS health │ • Message trace (24-72h)     │ • Corporate document auditing     │
+├──────────────────────────────┼──────────────────────────────┼───────────────────────────────────┤
+│ 📬 Mailbox Deep Governance   │ 📆 Calendar & Meetings       │ 💬 Teams & Notification Webhooks  │
+│ • Delegate & SendAs rights   │ • Meeting scheduling         │ • Adaptive Card alerts            │
+│ • Shared mailbox automapping │ • Real-time calendar events  │ • Daily operations digest bot     │
+│ • Folder retention & counts  │ • Availability inspection    │ • Incident dispatch channels      │
+└──────────────────────────────┴──────────────────────────────┴───────────────────────────────────┘
 ```
 
 ---
 
-## 🏗️ Architecture
+## 🏛️ Architecture
 
-The server employs a **Dual-Engine Architecture** balancing high throughput with deep administrative capability:
-
-```mermaid
-flowchart TD
-    subgraph AI Client Layer
-        C1[Claude Desktop]
-        C2[Cursor IDE]
-        C3[Antigravity IDE]
-        C4[Custom Autonomous Agent]
-    end
-
-    subgraph MCP Server Gateway [Stdio Transport]
-        PROTO[FastMCP JSON-RPC Protocol Dispatcher]
-        GUARD[Security Boundary & Environment Sanitizer]
-        DISPATCH[Tool Router - 34 Enterprise Tools]
-    end
-
-    subgraph Dual Engines
-        subgraph Graph Engine [Graph REST API v1.0]
-            MSAL[MSAL Client Credentials OAuth2]
-            G_HTTP[Async HTTP Graph Session]
-        end
-
-        subgraph Exchange Engine [Exchange Management v3]
-            PS_BRIDGE[PowerShell Isolated Script Bridge]
-            EXO_CMD[Exchange Online Cmdlets]
-        end
-    end
-
-    subgraph Microsoft Cloud Fabric
-        M365_GRAPH[(Microsoft Graph API)]
-        EXO_SVC[(Exchange Online Fabric)]
-        ENTRA_DIR[(Microsoft Entra ID)]
-    end
-
-    C1 & C2 & C3 & C4 -->|STDIO JSON-RPC| PROTO
-    PROTO --> GUARD --> DISPATCH
-
-    DISPATCH -->|Direct Graph Calls| MSAL --> G_HTTP --> M365_GRAPH & ENTRA_DIR
-    DISPATCH -->|Administrative Cmdlets| PS_BRIDGE --> EXO_CMD --> EXO_SVC
 ```
-
-For complete details on thread safety, token lifecycle, and error budgets, see the [Architecture Blueprint](docs/ARCHITECTURE.md).
-
----
-
-## 🛠️ Tool Catalog (34 Tools)
-
-| Category | Tool Identifier | Engine | Purpose |
-|---|---|---|---|
-| **Out of Office** | `m365_get_vacation_status` | Exchange | Inspect active auto-reply window and redirect rules |
-| | `m365_configure_vacation` | Exchange | Schedule HTML auto-reply + temporal team forwarding rule |
-| | `m365_disable_vacation` | Exchange | Instantly deactivate OOF and clear vacation rules |
-| **Offboarding** | `m365_audit_ex_employees` | Exchange | Audit disabled accounts to avoid NDR 550 5.1.10 errors |
-| | `m365_convert_ex_employee_to_shared` | Exchange | Convert to free SharedMailbox, set forward with copy & hide |
-| **Mailbox Ops** | `m365_get_mailbox_info` | Exchange | Retrieve quota, protocols, UPN, and forwarding config |
-| | `m365_list_mailboxes` | Exchange | Filter mailboxes by type (Shared, User, Room) |
-| | `m365_configure_shared_mailbox` | Exchange | Configure FullAccess, SendAs, and sent items retention |
-| **Rules & Flow** | `m365_list_inbox_rules` | Exchange | List client-side and server-side rules on a mailbox |
-| | `m365_list_transport_rules` | Exchange | Inspect tenant-wide mail flow and transport rules |
-| | `m365_remove_inbox_rule` | Exchange | Delete a specific inbox rule by name |
-| **Graph API** | `graph_send_email` | Graph API | Send corporate HTML emails with zero client latency |
-| | `graph_list_recent_messages` | Graph API | Retrieve recent mailbox messages and read status |
-| | `graph_send_teams_notification` | HTTP / Webhook | Broadcast rich formatted cards to Microsoft Teams |
-| **Directory (GAL)** | `gal_search_directory_users` | Graph API | Search Entra ID users by name, email, or department |
-| | `gal_audit_external_mail_contacts` | Exchange | Audit external MailContacts filtered by domain |
-| **Compliance** | `compliance_audit_domain_signatures`| Exchange | Audit tenant disclaimer and HTML signature rules |
-| | `compliance_audit_retention_policies`| Exchange | Audit retention policies and MRM tags (GDPR/LGPD) |
-| | `compliance_audit_litigation_hold` | Exchange | Audit mailboxes with Litigation/Retention Hold active |
-| | `compliance_audit_recoverable_items`| Exchange | Audit Recoverable Items quota & folder size hygiene |
-| **Diagnostics** | `m365_message_trace` | Exchange | Trace message delivery events, failures, and routing hops |
-| | `m365_verify_dkim_status` | Exchange | Verify cryptographic DKIM signing keys and status |
-| | `m365_list_connectors` | Exchange | List inbound and outbound email connectors |
-| **Defender & EOP** | `m365_check_quarantine` | Exchange | Query quarantined messages in Microsoft Defender |
-| | `m365_list_tenant_allow_list` | Exchange | List allowed senders, domains, and URLs |
-| | `m365_add_sender_to_allow_list` | Exchange | Whitelist partner domains or senders with expiration |
-| **Distribution** | `m365_list_distribution_groups` | Exchange | List distribution lists and external delivery policies |
-| | `m365_get_group_members` | Exchange | Enumerate distribution group members |
-| | `m365_manage_group_member` | Exchange | Add or remove members from distribution groups |
-| | `m365_set_group_external_delivery` | Exchange | Control unauthenticated external email permissions |
-| **Licensing** | `m365_list_license_skus` | Graph API | Query tenant SKUs, consumed seats, and free licenses |
-| **Profile Sync** | `m365_get_user_profile` | Graph API | Fetch department, title, phone, manager, and office |
-| | `m365_update_user_profile` | Graph API | Update organizational attributes in Entra ID |
-| **Intelligence** | `graph_generate_daily_activity_summary`| Graph API | Categorize recent messages into Urgent, Support, Financial |
-| **Forensics & Diagnostics** | `graph_inspect_mailbox_folders` | Graph API | Recursively inspect all mail folders, subfolder nesting, and unread counts |
-| | `graph_diagnose_mailbox_health` | Graph API | End-to-end diagnostic of mail arrival, diverted folders, and routing rules |
-| | `graph_search_mailbox_messages` | Graph API | Advanced message search with free-text, OData filters, and folder scope |
-| **Calendar & Scheduling** | `graph_list_calendar_events` | Graph API | Query scheduled events and meetings with datetime range filtering |
-| | `graph_create_calendar_event` | Graph API | Schedule calendar events and generate Teams meeting links |
-| **OneDrive & Files (ODSP)** | `graph_list_onedrive_files` | Graph API | Browse files and directories in user OneDrive personal storage |
-| | `graph_search_onedrive_files` | Graph API | Search corporate documents and files across OneDrive by keyword |
-| **Org & Team Awareness** | `graph_get_user_manager` | Graph API | Retrieve reporting manager from Entra ID corporate directory |
-| | `graph_get_user_direct_reports` | Graph API | List direct subordinates and reporting hierarchy for a leader |
-| | `graph_get_department_members` | Graph API | Discover collaborators and active team members in a department |
-
-Detailed parameter schemas and return types are documented in the [Tools Reference Manual](docs/TOOLS_REFERENCE.md).
+                      ┌─────────────────────────────────────────┐
+                      │   AI Agents & Coding Assistants         │
+                      │ (Claude, Cursor, Antigravity, Cline)    │
+                      └────────────────────┬────────────────────┘
+                                           │ MCP Protocol (JSON-RPC stdio)
+                                           ▼
+                      ┌─────────────────────────────────────────┐
+                      │    Enterprise M365 MCP Server Core      │
+                      │       FastMCP • Pydantic • RBAC         │
+                      └───────┬────────────┬────────────┬───────┘
+                              │            │            │
+             ┌────────────────┘            │            └────────────────┐
+             ▼                             ▼                             ▼
+┌────────────────────────┐   ┌───────────────────────────┐   ┌────────────────────────┐
+│  Microsoft Graph Engine│   │  Exchange Online Bridge   │   │ SMTP & DNS Diagnostics │
+│  OAuth2 App Client     │   │  EXO v3 REST PowerShell   │   │ Sockets • RFC 5321     │
+│  • Directory & Org     │   │  • Transport Rules        │   │ • Port 25 / 587 Check  │
+│  • Mail, Calendar, ODSP│   │  • Quarantine & Holds     │   │ • Real-time SMTP AUTH  │
+│  • Credential Policies │   │  • Mailbox Protocols      │   │ • MX, SPF & DMARC Audit│
+└────────────────────────┘   └───────────────────────────┘   └────────────────────────┘
+```
 
 ---
 
 ## ⚡ Quickstart
 
-### Prerequisites
-- **Python 3.10+**
-- **Windows PowerShell 5.1** or **PowerShell 7+** with the `ExchangeOnlineManagement` module:
-  ```powershell
-  Install-Module -Name ExchangeOnlineManagement -Scope CurrentUser -Force
-  ```
-- An **Azure Entra ID App Registration** (Follow the [Entra ID Setup Guide](docs/AZURE_ENTRA_ID_SETUP.md)).
+### 1. Prerequisites
+* **Python 3.10+**
+* An **App Registration in Microsoft Entra ID** with Graph permissions (e.g., `Directory.Read.All`, `Mail.ReadWrite`, `User.ReadWrite.All`)
+* Exchange Online Administrator rights (if utilizing PowerShell Exchange features)
 
-### 1. Clone & Install
+### 2. Installation
+
+Clone and install dependencies:
 ```bash
 git clone https://github.com/ManoAlee/MCP-M365-MICROSOFT.git
 cd MCP-M365-MICROSOFT
-
-# Create virtual environment
-python -m venv .venv
-# On Windows:
-.venv\Scripts\activate
-# On Linux/macOS:
-source .venv/bin/activate
-
-# Install dependencies
-pip install -e .
+pip install -r requirements.txt
 ```
 
-### 2. Configure Environment
-Copy the example environment file:
+### 3. Configuration (Zero-Trust Security)
+
+Create a `.env` file or export environment variables:
 ```bash
-cp .env.example .env
+export M365_TENANT_ID="00000000-0000-0000-0000-000000000000"
+export M365_CLIENT_ID="00000000-0000-0000-0000-000000000000"
+export M365_CLIENT_SECRET="your-azure-app-client-secret"
+export M365_PRIMARY_ADMIN="admin@yourdomain.com"
+export MCP_LOG_LEVEL="INFO"
 ```
 
-Edit `.env` with your Azure Entra ID credentials:
-```ini
-M365_TENANT_ID=00000000-0000-0000-0000-000000000000
-M365_CLIENT_ID=11111111-1111-1111-1111-111111111111
-M365_CLIENT_SECRET=your_client_secret_here
-M365_PRIMARY_ADMIN=admin@yourtenant.onmicrosoft.com
-MCP_LOG_LEVEL=INFO
-```
+*Alternatively, copy `config.example.json` to `config.json` (strictly ignored by `.gitignore`).*
 
-### 3. Run Self-Tests
-```bash
-python -m unittest discover tests
-```
+---
+
+## 🛠️ Tool Catalog (51 Tools)
+
+### 1. Out of Office / Vacation Automation
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_get_vacation_status` | Exchange | Queries scheduled auto-reply status and forward rules. |
+| `m365_configure_vacation` | Exchange | Schedules HTML auto-reply and optional date-bounded redirect rules. |
+| `m365_disable_vacation` | Exchange | Immediately deactivates out-of-office autoreply and cleans temporary rules. |
+
+### 2. Lifecycle & Ex-Employee Governance
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_audit_ex_employees` | Exchange | Audits offboarded user mailboxes, shared status, and forwarding rules. |
+| `m365_convert_ex_employee_to_shared` | Exchange | Converts user mailbox to Shared Mailbox and sets forwarding target. |
+
+### 3. Mailbox Operations & Permissions
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_get_mailbox_info` | Exchange | Deep inspection of mailbox type, protocols (OWA, MAPI, SMTP AUTH), and aliases. |
+| `m365_list_mailboxes` | Exchange | Lists tenant mailboxes filtered by type (`UserMailbox`, `SharedMailbox`, `RoomMailbox`). |
+| `m365_configure_shared_mailbox` | Exchange | Grants `FullAccess`, `SendAs`, configures automapping and Sent Items copy. |
+
+### 4. Transport Rules & Mail Routing
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_list_inbox_rules` | Exchange | Lists all client-side Inbox Rules configured on a user's mailbox. |
+| `m365_list_transport_rules` | Exchange | Lists tenant-wide Exchange Transport / Mail Flow rules with priority. |
+| `m365_remove_inbox_rule` | Exchange | Removes a specific inbox rule by name or GUID. |
+
+### 5. Microsoft Graph Email & Teams Notifications
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `graph_send_email` | Graph API | Dispatches emails via Microsoft Graph REST API (`/sendMail`) with HTML & attachments. |
+| `graph_list_recent_messages` | Graph API | Fetches recent messages from Inbox or custom folders with OData query filters. |
+| `graph_send_teams_notification` | Webhook | Sends high-impact Teams Adaptive Cards to operational webhooks. |
+
+### 6. Directory, GAL & External Contacts
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `gal_search_directory_users` | Graph API | Searches Global Address List (GAL) users by displayName, email, or department. |
+| `gal_audit_external_mail_contacts` | Exchange | Audits Mail Contacts in the directory against authoritative local registry. |
+
+### 7. Compliance, Retention & Legal Hold
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `compliance_audit_signatures` | Graph API | Audits user profile attributes mapped to corporate signature policies. |
+| `compliance_audit_retention` | Exchange | Audits retention policies, hold statuses, and litigation hold flags. |
+| `compliance_audit_litigation_hold` | Exchange | Identifies all mailboxes currently placed under active Litigation Hold. |
+| `compliance_audit_mailbox_recoverable_items`| Exchange | Audits Recoverable Items folder quotas and purge activity. |
+
+### 8. Mail Flow, Message Trace & DKIM
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_message_trace` | Exchange | Runs Exchange Message Trace (24-72h) diagnosing delivery failures and NDRs. |
+| `m365_verify_dkim_status` | Exchange | Validates DKIM signing status, selector records, and key rotation. |
+| `m365_list_connectors` | Exchange | Inspects Inbound and Outbound connectors, TLS validation, and sender IPs. |
+
+### 9. Exchange Online Protection (EOP) & Quarantine
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_check_quarantine` | Exchange | Queries quarantined messages filtered by reason (`Phish`, `Spam`, `Malware`). |
+| `m365_list_tenant_allow_list` | Exchange | Lists tenant allow/block entries for senders, domains, and URLs. |
+| `m365_add_sender_to_allow_list` | Exchange | Adds safe sender or domain to the Tenant Allow List with expiration. |
+
+### 10. Groups & Distribution Lists
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_list_distribution_groups` | Exchange | Lists Distribution Groups, Mail-Enabled Security Groups, and M365 Groups. |
+| `m365_get_group_members` | Exchange | Retrieves full member rosters and ownership for any group. |
+| `m365_manage_group_member` | Exchange | Adds or removes member UPNs from a Distribution Group. |
+| `m365_set_group_external_delivery` | Exchange | Toggles `RequireSenderAuthenticationEnabled` to permit external inbound mail. |
+
+### 11. Licensing & SKU Management
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_list_license_skus` | Graph API | Audits subscribed SKUs, total enabled seats, consumed units, and pool availability. |
+
+### 12. Profile Sync & Organization Management
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_get_user_profile` | Graph API | Queries full Entra ID profile (department, title, office, phone, manager). |
+| `m365_update_user_profile` | Exchange/Entra | Updates corporate directory fields and syncs Exchange Address Book. |
+
+### 13. Operational Intelligence & Bot
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `graph_generate_daily_activity_summary` | Graph API | Analyzes recent mailbox traffic and compiles structured operational digests. |
+
+### 14. Advanced Mailbox Diagnostics & Routing Forensics
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `graph_inspect_mailbox_folders` | Graph API | Recursively inspects mailbox folder hierarchy with item counts and size. |
+| `graph_diagnose_mailbox_health` | Graph API | Automated forensic diagnosis of message delivery destinations and rules. |
+| `graph_search_mailbox_messages` | Graph API | Searches mailbox messages using KQL, subject keywords, or sender criteria. |
+
+### 15. Calendar & Meeting Management
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_list_calendar_events` | Graph API | Retrieves calendar events in a date window with attendee RSVP statuses. |
+| `m365_create_calendar_event` | Graph API | Creates enterprise meetings with Teams link, attendees, and HTML body. |
+
+### 16. OneDrive & SharePoint Files (ODSP)
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_list_onedrive_files` | Graph API | Lists files and folders in a user's OneDrive root or specific subfolder. |
+| `m365_search_onedrive_files` | Graph API | Searches documents across OneDrive and SharePoint drives by keyword. |
+
+### 17. Organizational Hierarchy & Management Tree
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_get_user_manager` | Graph API | Retrieves a user's direct line manager from the organizational chart. |
+| `m365_get_user_direct_reports` | Graph API | Retrieves all direct reports assigned to a supervisor or executive. |
+| `m365_get_department_members` | Graph API | Lists all corporate directory users belonging to a specific department. |
+
+### 18. SMTP Diagnostics, Authentication, Test Delivery & DNS Health ⚡
+| Tool | Engine | Description |
+| :--- | :---: | :--- |
+| `m365_test_smtp_connectivity` | Network/Socket | Tests TCP socket reachability, DNS resolution, and ESMTP EHLO handshake (ports 25, 587, 465) with latency and STARTTLS verification. |
+| `m365_test_smtp_auth` | SMTP Engine | Validates SMTP AUTH credentials in real time with root-cause diagnostic guidance for code 535 (licensing, MFA, basic auth policies). |
+| `m365_send_smtp_test_email` | SMTP Engine | Sends end-to-end test emails supporting Direct Send (port 25, unauthenticated) or SMTP AUTH (port 587, authenticated). |
+| `m365_audit_domain_dns_health` | DNS Engine | Audits domain email DNS health (MX, SPF, DMARC), assesses spoofing risks, and cross-references public WAN IP against authorized SPF entries. |
+| `m365_get_password_policy` | Graph API | Queries Microsoft Entra ID via Graph API to determine if a service account has `DisablePasswordExpiration` enabled. |
+| `m365_set_password_never_expires`| Graph/PowerShell | Sets or revokes `DisablePasswordExpiration` policy for automated service accounts. |
+| `m365_diagnose_smtp_relay_prerequisites` | Hybrid Engine | Pre-flight audit for SMTP Relay & Direct Send (WAN IP, MX, ports 25/587, Inbound Connectors, and SPF). |
 
 ---
 
 ## 💻 Client Configuration
 
-Add this server to your preferred MCP client configuration:
+Add this server to your preferred MCP environment:
 
-### 🔷 Claude Desktop
-Edit `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
-
+### Claude Desktop (`claude_desktop_config.json`)
 ```json
 {
   "mcpServers": {
-    "m365-microsoft": {
+    "m365-governance": {
       "command": "python",
-      "args": ["-m", "mcp_m365"],
-      "cwd": "C:\\path\\to\\MCP-M365-MICROSOFT",
+      "args": ["-m", "mcp_m365.server"],
+      "cwd": "/path/to/MCP-M365-MICROSOFT",
       "env": {
         "M365_TENANT_ID": "your-tenant-id",
         "M365_CLIENT_ID": "your-client-id",
@@ -229,30 +270,26 @@ Edit `%APPDATA%\Claude\claude_desktop_config.json` (Windows) or `~/Library/Appli
 }
 ```
 
-### ⚡ Cursor IDE
-Add to `.cursor/mcp.json` or Global Cursor Settings:
-
-```json
-{
-  "mcpServers": {
-    "m365-microsoft": {
-      "command": "python",
-      "args": ["-m", "mcp_m365"],
-      "cwd": "/path/to/MCP-M365-MICROSOFT"
-    }
-  }
-}
-```
-
-### 🪐 Antigravity IDE / Cline
-Add to `~/.gemini/config/mcp_config.json`:
-
+### Cursor (`.cursor/mcp.json`)
 ```json
 {
   "mcpServers": {
     "m365-governance": {
       "command": "python",
-      "args": ["-m", "mcp_m365"],
+      "args": ["-m", "mcp_m365.server"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}
+```
+
+### Antigravity IDE (`mcp_config.json`)
+```json
+{
+  "mcpServers": {
+    "m365-governance": {
+      "command": "python.exe",
+      "args": ["-m", "mcp_m365.server"],
       "cwd": "C:\\path\\to\\MCP-M365-MICROSOFT"
     }
   }
@@ -261,33 +298,41 @@ Add to `~/.gemini/config/mcp_config.json`:
 
 ---
 
-## 🔒 Security & Compliance
+## 🔒 Security & Enterprise Governance
 
-This repository enforces strict enterprise security practices:
+This repository adheres to strict **Zero-Trust & Zero-Leak** security standards:
 
-- **Zero Hardcoded Secrets:** No tenant IDs, credentials, or client secrets are committed. Everything is dynamically populated through environment variables or local ignored files.
-- **Strict `.gitignore`:** Excludes `config.json`, `.env`, `*.log`, `__pycache__`, and temporary test tokens.
-- **Principle of Least Privilege:** Read-only operations are favored where possible, and administrative PowerShell cmdlets require authorized service accounts.
-- **Full Traceability:** Every tool invocation logs execution time and outcome for auditability.
+1. **Zero Hardcoded Secrets**: Absolutely no client IDs, secrets, tenant GUIDs, employee PII, or company domain names exist in the codebase. All runtime identity is injected strictly via environment variables.
+2. **Robust `.gitignore` Guardrails**: Production configuration files (`config.json`, `.env`, `*.token_cache.bin`, logs) are enforced in `.gitignore`.
+3. **Least Privilege Principle**: Supports granular Azure App Registration permission scopes. Read operations require only `Directory.Read.All` and `Mail.ReadWrite`.
+4. **Defensive SMTP Testing**: Diagnostic test email utilities do not store credentials or bypass transport policies.
 
 ---
 
-## 🤝 Contributing
+## 🧪 Testing & Validation
 
-Contributions are welcome! Please check out [CONTRIBUTING.md](CONTRIBUTING.md) and adhere to the project's code style and security guardrails.
+The server includes a comprehensive automated test suite verifying tool registration, Pydantic schemas, and Graph/Exchange integrations:
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'feat: Add new M365 compliance tool'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+```bash
+# Run unit tests
+python -m unittest discover tests
+
+# Output:
+# ..............
+# ----------------------------------------------------------------------
+# Ran 14 tests in 0.003s
+# OK (51 Tools Operational)
+```
 
 ---
 
 ## 📄 License
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more information.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+
+---
 
 <div align="center">
-  <sub>Built with ❤️ for enterprise cloud administrators and AI engineers.</sub>
+  <b>Built for Enterprise Cloud Architects, SecOps & AI Engineers</b><br>
+  Maintained by <a href="https://github.com/ManoAlee">Alessandro Meneses (@ManoAlee)</a>
 </div>

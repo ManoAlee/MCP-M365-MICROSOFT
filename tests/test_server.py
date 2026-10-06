@@ -20,7 +20,7 @@ class TestM365Server(unittest.TestCase):
         """Validates that MCP server initialized with expected properties and tools."""
         self.assertEqual(server.name, "mcp-m365-microsoft")
         tool_list = server._tool_manager.list_tools()
-        self.assertEqual(len(tool_list), 44, f"Expected exactly 44 tools, got {len(tool_list)}")
+        self.assertEqual(len(tool_list), 51, f"Expected exactly 51 tools, got {len(tool_list)}")
 
     def test_tools_export_count(self):
         """Validates that all expected tools are exported in __all__."""

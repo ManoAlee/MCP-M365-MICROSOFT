@@ -19,6 +19,15 @@ from .diagnostics_tool import inspect_mailbox_folders, diagnose_mailbox_health, 
 from .calendar_tool import list_calendar_events, create_calendar_event
 from .odsp_storage_tool import list_onedrive_files, search_onedrive_files
 from .org_hierarchy_tool import get_user_manager, get_user_direct_reports, get_department_members
+from .smtp_auth_tool import (
+    test_smtp_connectivity,
+    test_smtp_auth,
+    send_smtp_test_email,
+    audit_domain_dns_health,
+    get_password_policy,
+    set_password_never_expires,
+    diagnose_smtp_relay_prerequisites
+)
 
 __all__ = [
     # 1. Out of Office / Vacation
@@ -81,5 +90,13 @@ __all__ = [
     # 17. User & Organizational Hierarchy Awareness
     "get_user_manager",
     "get_user_direct_reports",
-    "get_department_members"
+    "get_department_members",
+    # 18. SMTP Diagnostics, Authentication, Test Delivery & DNS Health
+    "test_smtp_connectivity",
+    "test_smtp_auth",
+    "send_smtp_test_email",
+    "audit_domain_dns_health",
+    "get_password_policy",
+    "set_password_never_expires",
+    "diagnose_smtp_relay_prerequisites"
 ]

@@ -526,6 +526,90 @@ def tool_get_department_members(department: str, top: int = 50) -> Dict[str, Any
     return tools.get_department_members(department=department, top=top)
 
 
+
+# ------------------------------------------------------------------------------
+# 14. SMTP Diagnostics, Authentication, Test Delivery & DNS
+# ------------------------------------------------------------------------------
+
+@server.tool(
+    name="m365_test_smtp_connectivity",
+    description="Tests low-level TCP socket connectivity and ESMTP handshake across SMTP ports (25, 587, 465) with latency and STARTTLS support."
+)
+def tool_test_smtp_connectivity(
+    host: str = "smtp.office365.com",
+    port: int = 587,
+    timeout: int = 10
+) -> Dict[str, Any]:
+    return tools.test_smtp_connectivity(host=host, port=port, timeout=timeout)
+
+@server.tool(
+    name="m365_test_smtp_auth",
+    description="Validates SMTP AUTH credentials in real time against Microsoft 365 with root-cause diagnostic guidance (535, licensing, MFA)."
+)
+def tool_test_smtp_auth(
+    user: str,
+    password: str,
+    host: str = "smtp.office365.com",
+    port: int = 587,
+    use_tls: bool = True,
+    timeout: int = 15
+) -> Dict[str, Any]:
+    return tools.test_smtp_auth(user=user, password=password, host=host, port=port, use_tls=use_tls, timeout=timeout)
+
+@server.tool(
+    name="m365_send_smtp_test_email",
+    description="Sends an end-to-end test email via SMTP supporting Direct Send (port 25, no auth) or SMTP AUTH (port 587, authenticated)."
+)
+def tool_send_smtp_test_email(
+    sender: str,
+    recipient: str,
+    host: str = "smtp.office365.com",
+    port: int = 587,
+    password: Optional[str] = None,
+    subject: Optional[str] = None,
+    body: Optional[str] = None,
+    use_tls: bool = True
+) -> Dict[str, Any]:
+    return tools.send_smtp_test_email(
+        sender=sender,
+        recipient=recipient,
+        host=host,
+        port=port,
+        password=password,
+        subject=subject,
+        body=body,
+        use_tls=use_tls
+    )
+
+@server.tool(
+    name="m365_audit_domain_dns_health",
+    description="Audits email DNS records (MX, SPF, DMARC) for any domain, evaluates spoofing risks and validates outbound WAN IP."
+)
+def tool_audit_domain_dns_health(domain: str) -> Dict[str, Any]:
+    return tools.audit_domain_dns_health(domain=domain)
+
+@server.tool(
+    name="m365_get_password_policy",
+    description="Queries Microsoft Entra ID via Graph API to determine if a service account has 'DisablePasswordExpiration' enabled."
+)
+def tool_get_password_policy(user_upn: str) -> Dict[str, Any]:
+    return tools.get_password_policy(user_upn=user_upn)
+
+@server.tool(
+    name="m365_set_password_never_expires",
+    description="Sets or revokes the 'DisablePasswordExpiration' policy for a service account in Microsoft Entra ID."
+)
+def tool_set_password_never_expires(user_upn: str, never_expires: bool = True) -> Dict[str, Any]:
+    return tools.set_password_never_expires(user_upn=user_upn, never_expires=never_expires)
+
+@server.tool(
+    name="m365_diagnose_smtp_relay_prerequisites",
+    description="Performs comprehensive pre-flight audit for SMTP Relay and Direct Send (WAN IP, MX, ports 25/587, Inbound Connectors, SPF)."
+)
+def tool_diagnose_smtp_relay_prerequisites(domain: str) -> Dict[str, Any]:
+    return tools.diagnose_smtp_relay_prerequisites(domain=domain)
+
+
 def run_stdio():
     """Starts the MCP server using standard I/O (stdio) transport."""
     logger.info("Starting Enterprise M365 Governance MCP Server (stdio)...")
