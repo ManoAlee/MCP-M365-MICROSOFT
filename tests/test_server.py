@@ -20,11 +20,11 @@ class TestM365Server(unittest.TestCase):
         """Validates that MCP server initialized with expected properties and tools."""
         self.assertEqual(server.name, "mcp-m365-microsoft")
         tool_list = server._tool_manager.list_tools()
-        self.assertEqual(len(tool_list), 51, f"Expected exactly 51 tools, got {len(tool_list)}")
+        self.assertEqual(len(tool_list), 58, f"Expected exactly 58 tools, got {len(tool_list)}")
 
     def test_tools_export_count(self):
         """Validates that all expected tools are exported in __all__."""
-        self.assertGreaterEqual(len(tools.__all__), 35)
+        self.assertGreaterEqual(len(tools.__all__), 40)
         expected_new_tools = [
             "inspect_mailbox_folders",
             "diagnose_mailbox_health",
@@ -35,7 +35,14 @@ class TestM365Server(unittest.TestCase):
             "search_onedrive_files",
             "get_user_manager",
             "get_user_direct_reports",
-            "get_department_members"
+            "get_department_members",
+            "set_mailbox_forwarding",
+            "set_mailbox_protocol_access",
+            "manage_mailbox_alias",
+            "get_transport_rule_details",
+            "disable_transport_rule",
+            "enable_transport_rule",
+            "remove_transport_rule"
         ]
         for t in expected_new_tools:
             self.assertIn(t, tools.__all__, f"Missing {t} in tools.__all__")

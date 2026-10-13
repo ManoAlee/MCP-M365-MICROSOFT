@@ -53,10 +53,10 @@ def tool_configure_vacation(
 
 @server.tool(
     name="m365_disable_vacation",
-    description="Immediately disables automatic out-of-office replies and clears temporary vacation redirect rules."
+    description="Immediately disables automatic out-of-office replies, clears mailbox vacation rules, and optionally disables absence transport rules."
 )
-def tool_disable_vacation(user_upn: str) -> Dict[str, Any]:
-    return tools.disable_vacation(user_upn=user_upn)
+def tool_disable_vacation(user_upn: str, disable_transport_rules: bool = True) -> Dict[str, Any]:
+    return tools.disable_vacation(user_upn=user_upn, disable_transport_rules=disable_transport_rules)
 
 # ------------------------------------------------------------------------------
 # 2. Ex-Employee Governance & Lifecycle
@@ -121,6 +121,57 @@ def tool_configure_shared_mailbox(
         copy_sent_items=copy_sent_items
     )
 
+@server.tool(
+    name="m365_set_mailbox_forwarding",
+    description="Configures or clears server-side email forwarding (ForwardingSmtpAddress) on a mailbox with deliver-and-forward option."
+)
+def tool_set_mailbox_forwarding(
+    identity: str,
+    forwarding_smtp_address: Optional[str] = None,
+    deliver_to_mailbox_and_forward: bool = True
+) -> Dict[str, Any]:
+    return tools.set_mailbox_forwarding(
+        identity=identity,
+        forwarding_smtp_address=forwarding_smtp_address,
+        deliver_to_mailbox_and_forward=deliver_to_mailbox_and_forward
+    )
+
+@server.tool(
+    name="m365_set_mailbox_protocol_access",
+    description="Controls client protocol access (CASMailbox) for a user (OWA, ActiveSync mobile, MAPI desktop, POP, IMAP)."
+)
+def tool_set_mailbox_protocol_access(
+    identity: str,
+    owa_enabled: Optional[bool] = None,
+    activesync_enabled: Optional[bool] = None,
+    mapi_enabled: Optional[bool] = None,
+    pop_enabled: Optional[bool] = None,
+    imap_enabled: Optional[bool] = None
+) -> Dict[str, Any]:
+    return tools.set_mailbox_protocol_access(
+        identity=identity,
+        owa_enabled=owa_enabled,
+        activesync_enabled=activesync_enabled,
+        mapi_enabled=mapi_enabled,
+        pop_enabled=pop_enabled,
+        imap_enabled=imap_enabled
+    )
+
+@server.tool(
+    name="m365_manage_mailbox_alias",
+    description="Adds or removes a secondary email address (SMTP alias) from a mailbox (action: 'add' or 'remove')."
+)
+def tool_manage_mailbox_alias(
+    identity: str,
+    alias_email: str,
+    action: str = "add"
+) -> Dict[str, Any]:
+    return tools.manage_mailbox_alias(
+        identity=identity,
+        alias_email=alias_email,
+        action=action
+    )
+
 # ------------------------------------------------------------------------------
 # 4. Rules & Transport Routing
 # ------------------------------------------------------------------------------
@@ -138,6 +189,34 @@ def tool_list_inbox_rules(user_upn: str) -> Dict[str, Any]:
 )
 def tool_list_transport_rules(filter_state: Optional[str] = None) -> Dict[str, Any]:
     return tools.list_transport_rules(filter_state=filter_state)
+
+@server.tool(
+    name="m365_get_transport_rule_details",
+    description="Retrieves comprehensive configuration, conditions, actions, and comments of an Exchange Online transport rule."
+)
+def tool_get_transport_rule_details(rule_identity: str) -> Dict[str, Any]:
+    return tools.get_transport_rule_details(rule_identity=rule_identity)
+
+@server.tool(
+    name="m365_disable_transport_rule",
+    description="Disables an Exchange Online transport rule immediately and validates the updated state (Disabled)."
+)
+def tool_disable_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    return tools.disable_transport_rule(rule_identity=rule_identity)
+
+@server.tool(
+    name="m365_enable_transport_rule",
+    description="Enables an Exchange Online transport rule and validates the updated state (Enabled)."
+)
+def tool_enable_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    return tools.enable_transport_rule(rule_identity=rule_identity)
+
+@server.tool(
+    name="m365_remove_transport_rule",
+    description="Permanently deletes an organization-level Exchange Online transport rule."
+)
+def tool_remove_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    return tools.remove_transport_rule(rule_identity=rule_identity)
 
 @server.tool(
     name="m365_remove_inbox_rule",

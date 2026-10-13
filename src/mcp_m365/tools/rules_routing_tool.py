@@ -78,3 +78,77 @@ Remove-InboxRule -Mailbox '{user_upn}' -Identity '{rule_name}' -Confirm:$false -
         "user": user_upn,
         "details": result["data"] if result["success"] else result["stderr"]
     }
+
+def get_transport_rule_details(rule_identity: str) -> Dict[str, Any]:
+    """
+    Retrieves all properties, conditions, actions, and comments of an Exchange Transport Rule.
+    
+    :param rule_identity: Name or GUID of the transport rule
+    """
+    ps_cmd = f"""
+$r = Get-TransportRule -Identity '{rule_identity}' -ErrorAction Stop
+$props = @{{}}
+$r.PSObject.Properties | Where-Object {{ $_.Value -ne $null -and $_.Value -ne '' }} | ForEach-Object {{
+    $props[$_.Name] = $_.Value
+}}
+$props | ConvertTo-Json -Depth 4
+"""
+    result = ps_bridge.run_exchange_command(ps_cmd)
+    return {
+        "success": result["success"],
+        "rule_identity": rule_identity,
+        "details": result["data"] if result["success"] else result["stderr"]
+    }
+
+def disable_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    """
+    Disables an Exchange Online transport rule immediately and verifies state.
+    
+    :param rule_identity: Name or GUID of the transport rule
+    """
+    ps_cmd = f"""
+Disable-TransportRule -Identity '{rule_identity}' -Confirm:$false -ErrorAction Stop
+$r = Get-TransportRule -Identity '{rule_identity}' | Select-Object Name, State, Priority, Comments
+$r | ConvertTo-Json
+"""
+    result = ps_bridge.run_exchange_command(ps_cmd)
+    return {
+        "success": result["success"],
+        "rule_identity": rule_identity,
+        "details": result["data"] if result["success"] else result["stderr"]
+    }
+
+def enable_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    """
+    Enables an Exchange Online transport rule and verifies state.
+    
+    :param rule_identity: Name or GUID of the transport rule
+    """
+    ps_cmd = f"""
+Enable-TransportRule -Identity '{rule_identity}' -Confirm:$false -ErrorAction Stop
+$r = Get-TransportRule -Identity '{rule_identity}' | Select-Object Name, State, Priority, Comments
+$r | ConvertTo-Json
+"""
+    result = ps_bridge.run_exchange_command(ps_cmd)
+    return {
+        "success": result["success"],
+        "rule_identity": rule_identity,
+        "details": result["data"] if result["success"] else result["stderr"]
+    }
+
+def remove_transport_rule(rule_identity: str) -> Dict[str, Any]:
+    """
+    Permanently deletes an Exchange Online transport rule.
+    
+    :param rule_identity: Name or GUID of the transport rule
+    """
+    ps_cmd = f"""
+Remove-TransportRule -Identity '{rule_identity}' -Confirm:$false -ErrorAction Stop
+[PSCustomObject]@{{ Rule = '{rule_identity}'; Status = 'Transport rule deleted successfully' }} | ConvertTo-Json
+"""
+    result = ps_bridge.run_exchange_command(ps_cmd)
+    return {
+        "success": result["success"],
+        "rule_identity": rule_identity,
+        "details": result["data"] if result["success"] else result["stderr"]
+    }

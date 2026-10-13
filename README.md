@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastMCP](https://img.shields.io/badge/Protocol-Model%20Context%20Protocol%20(FastMCP)-blueviolet.svg?style=for-the-badge)](https://modelcontextprotocol.io)
-[![Tools: 51 Enterprise](https://img.shields.io/badge/Tools-51%20Enterprise%20Tools-success.svg?style=for-the-badge&logo=wakatime&logoColor=white)](#-tool-catalog-51-tools)
+[![Tools: 51 Enterprise](https://img.shields.io/badge/Tools-58%20Enterprise%20Tools-success.svg?style=for-the-badge&logo=wakatime&logoColor=white)](#-tool-catalog-58-tools)
 [![Microsoft Graph API](https://img.shields.io/badge/Microsoft%20Graph-v1.0%20%2F%20Beta-0078D4.svg?style=for-the-badge&logo=microsoft&logoColor=white)](https://learn.microsoft.com/en-us/graph/)
 [![Exchange Online](https://img.shields.io/badge/Exchange%20Online-v3%20REST-0078D4.svg?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](https://learn.microsoft.com/en-us/powershell/exchange/)
 [![Security: Zero Leak](https://img.shields.io/badge/Security-Zero%20Hardcoding%20%7C%20RBAC-green.svg?style=for-the-badge)](#-security--enterprise-governance)
@@ -16,7 +16,7 @@
   <a href="#-key-capabilities">Key Capabilities</a> •
   <a href="#-architecture">Architecture</a> •
   <a href="#-quickstart">Quickstart</a> •
-  <a href="#-tool-catalog-51-tools">Tool Catalog (51 Tools)</a> •
+  <a href="#-tool-catalog-58-tools">Tool Catalog (58 Tools)</a> •
   <a href="#-client-configuration">Client Setup</a> •
   <a href="#-security--enterprise-governance">Security</a> •
   <a href="#-contributing">Contributing</a>
@@ -30,7 +30,7 @@
 
 The **Enterprise Microsoft 365 MCP Server** connects Large Language Models (LLMs) and autonomous AI coding agents (such as **Claude Desktop**, **Cursor**, **Antigravity IDE**, **Cline**, and **GitHub Copilot**) directly to enterprise Microsoft 365 tenants with institutional-grade security.
 
-Equipped with **51 specialized tools across 18 operational pillars**, it fuses:
+Equipped with **58 specialized tools across 18 operational pillars**, it fuses:
 1. **Microsoft Graph REST API** (v1.0 & Beta) for ultra-fast, modern directory, messaging, calendar, files, and org awareness.
 2. **Exchange Online Management v3 REST Engine** for deep administrative operations, transport rules, litigation holds, quarantine management, and mail flow forensics.
 3. **SMTP & Messaging Infrastructure Engine** for low-level socket diagnostics, real-time SMTP AUTH credential validation, Direct Send testing, and DNS security posture auditing (MX, SPF, DMARC, anti-spoofing).
@@ -120,7 +120,7 @@ export MCP_LOG_LEVEL="INFO"
 
 ---
 
-## 🛠️ Tool Catalog (51 Tools)
+## 🛠️ Tool Catalog (58 Tools)
 
 ### 1. Out of Office / Vacation Automation
 | Tool | Engine | Description |
@@ -321,7 +321,7 @@ python -m unittest discover tests
 # ..............
 # ----------------------------------------------------------------------
 # Ran 14 tests in 0.003s
-# OK (51 Tools Operational)
+# OK (58 Tools Operational)
 ```
 
 ---

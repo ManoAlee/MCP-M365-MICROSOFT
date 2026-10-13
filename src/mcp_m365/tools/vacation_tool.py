@@ -119,16 +119,43 @@ if ({' $true ' if has_redirect else ' $false '}) {{
         "details": result["data"] if result["success"] else result["stderr"]
     }
 
-def disable_vacation(user_upn: str) -> Dict[str, Any]:
+def disable_vacation(user_upn: str, disable_transport_rules: bool = True) -> Dict[str, Any]:
     """
-    Immediately disables auto-reply and removes vacation redirect rules.
+    Immediately disables auto-reply, removes mailbox vacation rules,
+    and optionally disables matching organization-level absence transport rules.
+    
+    :param user_upn: Mailbox UPN (user@domain.com)
+    :param disable_transport_rules: If True, also disables active absence transport rules targeting this user
     """
+    transport_cleanup_logic = ""
+    if disable_transport_rules:
+        clean_user = user_upn.strip()
+        transport_cleanup_logic = f"""
+$userPattern = '{clean_user}'
+$disabledRules = @()
+$rules = Get-TransportRule | Where-Object {{
+    ($_.Name -match "Ausencia|Ferias|Vacation" -and ($_.Name -match [regex]::Escape($userPattern) -or $_.Comments -match [regex]::Escape($userPattern))) -or
+    ($_.RecipientAddressMatchesPatterns -and ($_.RecipientAddressMatchesPatterns -match [regex]::Escape($userPattern)))
+}}
+foreach ($tr in $rules) {{
+    if ($tr.State -eq 'Enabled') {{
+        Disable-TransportRule -Identity $tr.Identity -Confirm:$false -ErrorAction SilentlyContinue
+        $disabledRules += $tr.Name
+    }}
+}}
+"""
+    else:
+        transport_cleanup_logic = "$disabledRules = @()"
+
     ps_cmd = f"""
 Set-MailboxAutoReplyConfiguration -Identity '{user_upn}' -AutoReplyState Disabled -ErrorAction Stop
 Get-InboxRule -Mailbox '{user_upn}' | Where-Object {{ $_.Name -like '*Vacation*' -or $_.Name -like '*Ferias*' -or $_.Name -like '*Ausencia*' }} | Remove-InboxRule -Confirm:$false -ErrorAction SilentlyContinue
+{transport_cleanup_logic}
+
 [PSCustomObject]@{{
     User = '{user_upn}'
     Status = "Out of Office Disabled and Vacation Rules Removed"
+    DisabledTransportRules = $disabledRules
 }} | ConvertTo-Json
 """
     result = ps_bridge.run_exchange_command(ps_cmd)

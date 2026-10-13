@@ -4,8 +4,23 @@ Consolidated export of all M365 Governance MCP tools.
 
 from .vacation_tool import get_vacation_status, configure_vacation, disable_vacation
 from .ex_employee_tool import audit_ex_employees, convert_to_shared_and_forward
-from .mailbox_tool import get_mailbox_info, list_mailboxes, configure_shared_mailbox
-from .rules_routing_tool import list_inbox_rules, list_transport_rules, remove_inbox_rule
+from .mailbox_tool import (
+    get_mailbox_info,
+    list_mailboxes,
+    configure_shared_mailbox,
+    set_mailbox_forwarding,
+    set_mailbox_protocol_access,
+    manage_mailbox_alias
+)
+from .rules_routing_tool import (
+    list_inbox_rules,
+    list_transport_rules,
+    remove_inbox_rule,
+    get_transport_rule_details,
+    disable_transport_rule,
+    enable_transport_rule,
+    remove_transport_rule
+)
 from .graph_mailer_tool import send_graph_email, list_recent_messages, send_teams_notification
 from .gal_contacts_tool import search_directory_users, audit_external_mail_contacts
 from .compliance_tool import audit_domain_signatures, audit_compliance_retention, audit_litigation_hold, audit_mailbox_recoverable_items
@@ -41,10 +56,17 @@ __all__ = [
     "get_mailbox_info",
     "list_mailboxes",
     "configure_shared_mailbox",
+    "set_mailbox_forwarding",
+    "set_mailbox_protocol_access",
+    "manage_mailbox_alias",
     # 4. Rules & Transport
     "list_inbox_rules",
     "list_transport_rules",
     "remove_inbox_rule",
+    "get_transport_rule_details",
+    "disable_transport_rule",
+    "enable_transport_rule",
+    "remove_transport_rule",
     # 5. Graph Email & Teams Notifications
     "send_graph_email",
     "list_recent_messages",
